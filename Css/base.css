@@ -1,0 +1,264 @@
+:root{
+    --primary-color:  rgb(0, 221, 255);
+    --whitecolor: rgb(255, 255, 255);
+    --blackcolor: rgb(0, 0, 0);
+    --textcolor: rgba(0, 0, 0, 0.704);
+    --border: rgba(148, 145, 145, 0.584);
+    --rules: rgb(148, 118, 34);
+    --header--height: 120px;
+    --navbar-height: 35px;
+    --whiteblur: rgb(248, 248, 248);
+    --header--search--modal: calc(var(--header--height) - var( --navbar-height));
+    --star--yellow:rgba(254, 254, 19, 0.888);
+}
+
+/* :root và ::after một cái là lớp giả, cái còn lại là phần tử giả */
+
+
+* {
+    box-sizing: inherit;
+    /* Các phần tử phải có css '*' này.
+    Giá trị là inherit vì không thể border hay content do k có 2 giá trị này
+    Không tạo border hay content vì không dùng tới.*/
+}
+html {
+    font-size: 62.5%; 
+    /* lúc này không còn là mặc định 100%=16px mà là 10px */
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    /* sans-serif loại chữ không chân */
+    box-sizing: border-box;
+    /* 28/10 có tác dụng nhưng chưa rõ,thông tin hiện tại biết là hỗ trợ thẻ '*' ở bên trên */
+}
+/* Reposive */
+.grid{
+    width: 1200px;
+    /* Kích thước lap lenovo này là 1460,muốn cách lề hai bên 60 thì đặt 
+    1400,lớn hơn 1460 thì tự đẩy xuống một dòng*/
+    max-width: 100%;
+    margin: 0 auto;
+    /* để auto auto vẫn được,miễn căn giữa */
+
+}
+.grid_full-width{
+    width: 100%;
+}
+/* Css này dành cho nâng cao, có tác dụng không muốn dùng css .grid thì dùng cái full này
+ */
+/* Css này dành cho nâng cao, có tác dụng thẻ nào chứa css này thì content nằm ngang do flex
+conent nhiều quá thì xuống dòng do flex-wrap: wrap;
+ */
+
+
+
+/* Animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes Growth{
+    from{
+        transform: scale(var(--Growth--from));
+    }
+    to {
+        transform: scale(var(--Growth--to));
+    }
+}
+/* Modal  */
+.modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    animation: fadeIn linear 0.1s;
+}
+.modal_overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* z-index: 0; 
+    Đây là thuộc tính ẩn,mặc định sự ưu tiên hiển thị của layer,giá trị lúc đầu là 0
+    Có thể đè lên */
+}
+.modal_body{
+    --Growth--from: 0.7;
+    --Growth--to: 1;
+    margin: auto;
+    animation: Growth linear 0.1s;
+    position: relative;
+    z-index: 1;
+}
+/* Hack căn giữa, thẻ cha display:flex, thẻ cần căn giữa margin: auto */
+/* Button styles */
+.btn{
+    min-width: 124px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    color: var(--textcolor);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* line-height: 1.6rem; */
+    /* Có dòng trên vì video bị lỗi căn giữa*/
+    background-color: white;
+
+}
+.btn.btn_s{
+    height: 32px;
+    font-size: 12px;
+    padding-left: 8px;
+}
+.btn.btn_specific:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+/* Cách gọi class dưới là để gọi class tới một thẻ phải có tất cả class trên 
+Thiếu một trong hai thì không được gọi.Tác dụng là để cho cái class có tất cả thẻ được một css riêng
+Giống kiểu 2 thằng cùng bàn thì trực nhật chung*/
+.btn.btn_primary{
+    color: var(--whitecolor);
+    background-color: var(--primary-color);
+
+}
+/* Nút disable ở dưới sau này dùng, cho back-end */
+.btn.btn_disable{
+    cursor: default;
+    background-color: grey;
+    color: rgba(255, 255, 255, 0.523);
+    
+}
+
+/* Test */
+.grid_row{
+    display: flex;
+    flex-wrap: wrap;
+    /* Để xuống dòng dùng cho flex */
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.grid_column_2{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.6667%;
+   
+}
+.grid_column_2_4{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 20%;
+    
+}
+.grid_column_10{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+   
+}
+/* Selection */
+.Select_input{
+    min-width: 200px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 2px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.Select_input:hover .Select_input_list{
+    display: block;
+
+}
+.Select_input::before{
+    position: absolute;
+    left: 0;
+    top: 26px;
+    width: 100%;
+    height: 20px;
+    content: "";
+    display: block;
+
+}
+
+.Select_input_price{
+    font-size: 1.4rem;
+}
+.Select_input_icon{
+    font-size: 1.4rem;
+    color: var(--border);
+    position: relative;
+    top: 2px;
+}
+.Select_input_list{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25px;
+    border-radius: 2px;
+    background-color: white;
+    padding: 8px 16px;
+    list-style: none;
+    display: none;
+    z-index: 1;
+}
+
+.input_items_link{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: var(--textcolor);
+    display: block;
+    padding: 4px 0;
+}
+/* Pagination */
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+.pagination_items{
+    margin: 0 10px;
+}
+
+.pagination_link_active:hover .pagination_items_link{
+    background-color:  rgba(0, 221, 255, 0.9);
+}
+
+
+.pagination_link_active .pagination_items_link{
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+.pagination_items_link{
+    display: block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: rgb(147, 147, 147);
+    min-width: 40px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
+.pagination_items_icon{
+    color: rgba(129, 119, 119, 0.453);
+}
